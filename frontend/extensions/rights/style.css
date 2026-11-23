@@ -1,0 +1,8 @@
+.permit-spread {display:grid;grid-template-columns:minmax(0,1.65fr) minmax(240px,1fr);gap:1.6rem;margin-top:1.5rem}
+.permit-group header,.permit-index {display:flex;gap:.45rem;flex-wrap:wrap;align-items:center}
+.permit-group header {justify-content:space-between;border-bottom:2px solid var(--s-accent);margin-bottom:.45rem}
+.permit-group article {padding:.8rem 1rem;margin-bottom:.65rem;border-left:4px double var(--s-line);background:var(--s-panel)}
+.permit-group blockquote {margin:.65rem 0;color:var(--s-accent)}
+.permit-desk {align-self:start;border:1px solid var(--s-line);padding:1rem}
+.permit-dates {display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+@media(max-width:767px){.permit-spread,.permit-dates {grid-template-columns:1fr}}

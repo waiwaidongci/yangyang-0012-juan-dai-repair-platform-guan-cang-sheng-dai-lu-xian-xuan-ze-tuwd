@@ -1,0 +1,37 @@
+:root {
+  --s-page:oklch(24% .022 76);--s-panel:oklch(30% .032 73);--s-ink:oklch(94% .03 85);--s-muted:oklch(78% .049 80);
+  --s-line:oklch(48% .052 71);--s-accent:oklch(83% .132 80);--s-onaccent:oklch(25% .032 70);--s-error:oklch(78% .137 24);--s-ok:oklch(85% .1 135);
+}
+.chapter { margin:1.5rem 0 2rem; }
+.chapter p { color:var(--s-muted); }
+.archive-layout,.reading-grid,.card-layout { display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,1fr);gap:2rem; }
+.reel-box { display:block;max-width:490px;position:relative;text-decoration:none;color:var(--s-ink);background:var(--s-panel);padding:1.45rem;border:1px solid var(--s-line);border-top:6px double var(--s-accent); }
+.reel-box h3 {font-size:1.35rem;margin-top:.75rem;}
+.reel-box span {color:var(--s-accent);}
+.spools { height:84px;display:flex;align-items:center;justify-content:center;gap:1rem;border:1px solid var(--s-line);background:var(--s-page); }
+.spools i {width:46px;aspect-ratio:1;border:10px double var(--s-line);border-radius:100%;background:var(--s-panel);}
+.catalog-spine details,.manifest {border:1px solid var(--s-line);padding:.8rem 1rem;margin-bottom:.7rem;}
+summary { cursor:pointer; }
+.catalog-spine a { display:block; padding:.25rem 0; }
+.choose { max-width:320px;margin-bottom:1rem; }
+.time-sheet article { display:grid;grid-template-columns:98px 1fr;border-top:1px solid var(--s-line);padding:1rem 0; }
+.time-sheet time { color:var(--s-accent);font-size:1.4rem;font-variant-numeric:tabular-nums; }
+.time-sheet dl { display:flex;flex-wrap:wrap;gap:0 .55rem;margin:.6rem 0; }
+.time-sheet dd { margin:0 1rem 0 0;font-weight:700; }
+.bench,.score-sheet,.order { background:var(--s-panel);border-top:3px solid var(--s-line);padding:1.2rem; }
+.bench { align-self:start; }
+form {display:grid;gap:.7rem;margin-top:.8rem;}
+form button {justify-self:start;}
+.counts,.donor-folds { display:grid;grid-template-columns:repeat(3,minmax(60px,1fr));gap:.65rem; }
+.scoreboard { display:grid;grid-template-columns:1.12fr 1fr;gap:1.4rem; }
+.scoreboard article { border-bottom:1px solid var(--s-line); padding:.8rem; }
+.scoreboard article strong {display:block;font-size:1.5rem;color:var(--s-accent);}
+meter { width:100%;height:1.65rem; }
+.manifest { margin-top:1rem; max-width:850px; }
+.order { margin-bottom:1rem;border-left:5px solid var(--s-accent); }
+.ticket-id { color:var(--s-muted);letter-spacing:.05em; }
+@media(max-width:767px) {
+  .archive-layout,.reading-grid,.card-layout,.scoreboard { grid-template-columns:1fr;gap:1rem; }
+  .counts,.donor-folds {grid-template-columns:repeat(3,minmax(0,1fr));}
+  .time-sheet article {grid-template-columns:69px 1fr;}
+}

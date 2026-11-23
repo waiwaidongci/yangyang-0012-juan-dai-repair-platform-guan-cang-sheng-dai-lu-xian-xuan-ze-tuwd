@@ -1,0 +1,11 @@
+.handoff-grid {display:grid;grid-template-columns:minmax(0,1.7fr) minmax(240px,1fr);gap:1.45rem;margin-top:1.5rem}
+.handoff-article {display:grid;grid-template-columns:minmax(50px,70px) minmax(0,1fr);margin-bottom:.8rem;background:var(--s-panel);border:1px solid var(--s-line)}
+.seal-number {display:grid;place-items:center;background:var(--s-accent);color:var(--s-onaccent);letter-spacing:.08em;font-weight:700}
+.handoff-article section {padding:.9rem}
+.handoff-article header {display:flex;gap:.5rem;align-items:start;justify-content:space-between;flex-wrap:wrap}
+.handoff-article dl {display:grid;gap:.35rem .8rem;grid-template-columns:auto minmax(0,1fr)}
+.handoff-article dd {margin:0}
+.handoff-digest {overflow-wrap:anywhere;font-family:monospace}
+.handoff-actions {display:flex;gap:.55rem;flex-wrap:wrap}
+.handoff-intake {align-self:start;border-top:3px solid var(--s-accent);padding:1rem;background:var(--s-panel)}
+@media(max-width:767px){.handoff-grid {grid-template-columns:1fr}}
