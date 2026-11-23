@@ -3,12 +3,15 @@ import {message,option,wireForms} from '/workflow-ui.js'
 import {outgoing} from './manifest-view.js'
 
 const endpoint='/api/archive-handoffs'
+const receiptBody=values=>({receipt_ref:values.receipt_ref,verified_digest:values.verified_digest,
+  signed_at:new Date(values.signed_at).toISOString()})
+
 export async function render(outlet,user,flash='') {
-  const {partners,grants,handoffs,derivatives}=await api(endpoint)
+  const {partners,grants,handoffs,derivatives,receipts}=await api(endpoint)
   if (!outlet.isConnected) return
   const grantOptions=copy=>grants.filter(row=>row.reel===copy?.reel).map(row=>option(row.id,row.instrument_ref)).join('')
-  outlet.innerHTML=`${message(flash)}<h1>馆际交付清单</h1><p>以已通过质检的访问副本、馆际授权与接收档案室建立交付清单。</p>
-    <div class="handoff-grid"><section><h2>出库与签收履历</h2>${outgoing(handoffs,user)}</section>
+  outlet.innerHTML=`${message(flash)}<h1>馆际交付清单</h1><p>以已通过质检的访问副本、馆际授权与接收档案室建立交付清单。授权撤回后，已出库副本转入待召回，凭退回确认与新授权补发；晚到的离线回执按签收时间判定归属或争议。</p>
+    <div class="handoff-grid"><section><h2>出库与签收履历</h2>${outgoing(handoffs,receipts,grants,user)}</section>
     <aside class="handoff-intake"><h2>准备副本清单</h2>${user.role==='operator'&&derivatives.length?`<form data-operation="prepare">
     <label>访问副本<select name="derivative">${derivatives.map(row=>option(row.id,row.filename)).join('')}</select></label>
     <label>该卷馆际授权<select name="grant_id" required>${grantOptions(derivatives[0])}</select></label>
@@ -23,7 +26,9 @@ export async function render(outlet,user,flash='') {
   wireForms(outlet,next=>render(outlet,user,next),{
     prepare: ()=>({path:endpoint}),
     release: (_values,form)=>({path:update(form,'release'),body:{}}),
-    receipt: (_values,form)=>({path:update(form,'receipt')}),
+    receipt: (values,form)=>({path:update(form,'receipt'),body:receiptBody(values)}),
+    return: (values,form)=>({path:update(form,'return'),body:receiptBody(values)}),
+    reissue: (values,form)=>({path:update(form,'reissue'),body:{grant_id:Number(values.grant_id),purpose:values.purpose}}),
     withdraw: (_values,form)=>({path:update(form,'withdraw'),body:{}}),
   })
 }

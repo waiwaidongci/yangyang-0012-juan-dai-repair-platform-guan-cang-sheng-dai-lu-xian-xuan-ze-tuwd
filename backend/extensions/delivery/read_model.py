@@ -20,10 +20,16 @@ def exchange_desk(cx):
             ORDER BY reel,id DESC
         """).fetchall(),
         "handoffs":cx.execute("""
-            SELECT h.*,p.name,d.filename,g.instrument_ref FROM recording_handoffs h
+            SELECT h.*,p.name,d.filename,e.reel,g.instrument_ref,
+                   g.stage AS grant_stage,g.revoked_at AS grant_revoked_at,g.revoke_note
+            FROM recording_handoffs h
             JOIN archive_exchange_partners p ON p.slug=h.partner
             JOIN audio_derivative_checks d ON d.id=h.derivative
+            JOIN conservation_cards c ON c.id=d.card JOIN signal_excerpts e ON e.code=c.excerpt
             JOIN recording_use_grants g ON g.id=h.grant_id ORDER BY h.id DESC
+        """).fetchall(),
+        "receipts":cx.execute("""
+            SELECT * FROM handoff_receipts ORDER BY recorded_at,id
         """).fetchall()
     }
 

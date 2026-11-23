@@ -42,7 +42,7 @@ def approve(cx, identifier, actor):
 def revoke(cx, identifier, note, actor):
     permit_for_update(cx,identifier)
     item = cx.execute("""
-        UPDATE recording_use_grants SET stage='revoked',revoke_note=%s,revoked_by=%s
+        UPDATE recording_use_grants SET stage='revoked',revoke_note=%s,revoked_by=%s,revoked_at=now()
         WHERE id=%s AND stage='approved' RETURNING *
     """,(note,actor,identifier)).fetchone()
     if not item:

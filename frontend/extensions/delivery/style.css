@@ -7,5 +7,14 @@
 .handoff-article dd {margin:0}
 .handoff-digest {overflow-wrap:anywhere;font-family:monospace}
 .handoff-actions {display:flex;gap:.55rem;flex-wrap:wrap}
+.handoff-badges {display:flex;gap:.4rem;flex-wrap:wrap}
+.handoff-trail {list-style:none;padding:0;margin:.6rem 0;display:grid;gap:.3rem;font-size:.92rem}
+.handoff-trail b {color:var(--s-accent);margin-right:.5rem}
+.handoff-receipts {list-style:none;padding:0;margin:.5rem 0;display:grid;gap:.3rem;font-size:.92rem}
+.status-chip.warn {color:var(--s-accent);border-color:var(--s-accent)}
+.status-chip.dispute {color:var(--s-error);border-color:var(--s-error)}
+.dispute-note {color:var(--s-error)}
+.handoff-receipt-form {display:grid;gap:.5rem;margin-top:.6rem;border-top:1px dashed var(--s-line);padding-top:.6rem}
+.late-receipt {margin-top:.6rem}
 .handoff-intake {align-self:start;border-top:3px solid var(--s-accent);padding:1rem;background:var(--s-panel)}
 @media(max-width:767px){.handoff-grid {grid-template-columns:1fr}}
